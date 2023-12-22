@@ -1,0 +1,122 @@
+@import url(reset.css);
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0077B4;
+  user-select: none; /* Usuário não poderá selecionar as coisas */
+}
+
+.container{
+  position: relative;/* permite a malipulação posterior */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background: linear-gradient(
+    325deg,
+    #03001e 0%,
+    #7303c0 30%,
+    #ec38bc 70%,
+    #fdeff9 100%
+  );
+  padding: 4rem 6rem;
+}
+
+.container h2{
+  font-size: 3em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.reset{
+  padding: 1rem 1.5rem;
+  width: 100%;
+  color: black;
+  background-color: white;
+  border: none;
+  font-size: 1.5em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.reset:focus{
+  color: #ec38bc;
+  background: #262809;
+  transition: all 0.2s ease;
+}
+
+.game{
+  width: 430px;
+  height: 430px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+.item{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+
+  font-size: 3em;
+  transform: rotateY(180deg);
+  transition: 0.5s;
+}
+
+.item::after{
+  content: "";
+  position: absolute;
+  inset: 0;/* Define o ponto 0, que é´o ponto em que as modificações serão aplicadas */
+  background-color: #404040;
+  transition: 0.5s;
+  transform: rotateY(0deg);
+  backface-visibility: hidden; /* Deixa o que esta atrás da carta invisível */
+}
+
+.item.boxOpen{
+  transform: rotateY(0deg);
+}
+
+.boxOpen::after,
+.boxMatch::after{
+  transform: rotateY(180deg);
+}
+
+.youWin{
+  margin-top: 2rem;
+  font-size: 3rem;
+  background-color: white;
+  color: #0074ad;
+  padding: 1rem;
+  animation: move infinite 2s;
+}
+
+@keyframes move{
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-15px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+}
+
+.active{
+  display: none;
+}
